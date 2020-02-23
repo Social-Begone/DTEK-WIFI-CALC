@@ -53,7 +53,10 @@ int main(void) {
 	SPI2CONSET = 0x20;
 	/* SPI2CON bit ON = 1; */
 	SPI2CONSET = 0x8000;
-	
+
+
+
+    // MAY BE CHANGED FOR PROJECT (?)	
 	display_init();
 	display_string(0, "KTH/ICT lab");
 	display_string(1, "in Computer");
@@ -65,9 +68,8 @@ int main(void) {
 	
 	labinit(); /* Do any lab-specific initialization */
 
-	while( 1 )
-	{
-	  labwork(); /* Do lab-specific things again and again */
+	while( 1 ) {
+	    labwork(); /* Do lab-specific things again and again */
 	}
 	return 0;
 }
