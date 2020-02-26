@@ -3,10 +3,11 @@
 #include <stdint.h>   /* Declarations of uint_32 and the like */
 #include <pic32mx.h>  /* Declarations of system-specific addresses etc */
 #include "OLED_SPI.h"  /* Declatations for these labs */
+#include "font.h"
 
+char textbuffer[4][16];
 
 static void quicksleep(int cyc);
-
 
 #define DISPLAY_CHANGE_TO_COMMAND_MODE (PORTFCLR = 0x10)
 #define DISPLAY_CHANGE_TO_DATA_MODE (PORTFSET = 0x10)
@@ -20,7 +21,7 @@ static void quicksleep(int cyc);
 #define DISPLAY_TURN_OFF_VDD (PORTFSET = 0x40)
 #define DISPLAY_TURN_OFF_VBAT (PORTFSET = 0x20)
 
-inline void quicksleep(int cyc) {
+static void quicksleep(int cyc) {
 	for(; cyc > 0; cyc--);
 }
 

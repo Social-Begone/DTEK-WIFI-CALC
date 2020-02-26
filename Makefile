@@ -26,7 +26,7 @@ ASFILES         = $(wildcard *.S)
 SYMSFILES	= $(wildcard *.syms)
 
 # Object file names
-OBJFILES         =$(CFILES:.c=.c.o)
+OBJFILES         =$(CFILES:.c=.c.o) $(wildcard */*.c)
 OBJFILES        +=$(ASFILES:.S=.S.o)
 OBJFILES        +=$(SYMSFILES:.syms=.syms.o)
 

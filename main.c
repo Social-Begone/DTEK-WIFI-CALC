@@ -9,9 +9,14 @@
 
 #include <stdint.h>   /* Declarations of uint_32 and the like */
 #include <pic32mx.h>  /* Declarations of system-specific addresses etc */
-#include "mipslab.h"  /* Declatations for these labs */
+#include "main.h"  /* Declatations for these labs */
+#include "driver/OLED_SPI.h"
+#include "driver/OLED_I2C.h"
+#include "data.h"
 
-int main(void) {
+void user_isr() {} 
+
+char main(void) {
         /*
 	  This will set the peripheral bus clock to the same frequency
 	  as the sysclock. That means 80 MHz, when the microcontroller
@@ -54,22 +59,30 @@ int main(void) {
 	/* SPI2CON bit ON = 1; */
 	SPI2CONSET = 0x8000;
 
+	
+	OLED_start();
+
+	int y;
+    for (y = 0; y < 128; y += 2){
+        int x;
+        for (x = 0; x < 128; x++){
+            if ((ext_screen_buffer[y + (x / 64)] >> (x % 64)) & 1) 
+                OLED_setPixel(x, y >> 1);
+        }
+    }
+
+	OLED_refresh();
 
 
-    // MAY BE CHANGED FOR PROJECT (?)	
 	display_init();
-	display_string(0, "KTH/ICT lab");
-	display_string(1, "in Computer");
-	display_string(2, "Engineering");
-	display_string(3, "Welcome!");
 	display_update();
-	
-	display_image(96, icon);
-	
-	labinit(); /* Do any lab-specific initialization */
 
-	while( 1 ) {
-	    labwork(); /* Do lab-specific things again and again */
-	}
+	 display_image(0,  int_screen_buffer + 0 * 128);
+	 display_image(32, int_screen_buffer + 1 * 128);
+	 display_image(64, int_screen_buffer + 2 * 128);
+	 display_image(96, int_screen_buffer + 3 * 128);
+
+	while( 1 );
+
 	return 0;
 }
