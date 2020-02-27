@@ -59,6 +59,7 @@ envcheck:
 
 install: envcheck
 	$(TARGET)avrdude -v -p $(shell echo "$(DEVICE)" | tr '[:lower:]' '[:upper:]') -c stk500v2 -P "$(TTYDEV)" -b $(TTYBAUD) -U "flash:w:$(HEXFILE)"
+	make clean
 
 $(ELFFILE): $(OBJFILES) envcheck
 	$(CC) $(CFLAGS) -o $@ $(OBJFILES) $(LDFLAGS)
