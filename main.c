@@ -10,8 +10,8 @@
 #include <stdint.h>   /* Declarations of uint_32 and the like */
 #include <pic32mx.h>  /* Declarations of system-specific addresses etc */
 #include "main.h"  /* Declatations for these labs */
-#include "driver/OLED_SPI.h"
-#include "driver/OLED_I2C.h"
+#include "drivers/OLED_SPI.h"
+#include "drivers/OLED_I2C.h"
 #include "data.h"
 
 void user_isr() {} 
@@ -28,7 +28,7 @@ char main(void) {
 	OSCCONCLR = 0x180000; /* clear PBDIV bit <0,1> */
 	while(OSCCON & (1 << 21));  /* Wait until PBDIV ready */
 	SYSKEY = 0x0;  /* Lock OSCCON */
-	
+
 	/* Set up output pins */
 	AD1PCFG = 0xFFFF;
 	ODCE = 0x0;
@@ -59,8 +59,7 @@ char main(void) {
 	/* SPI2CON bit ON = 1; */
 	SPI2CONSET = 0x8000;
 
-	
-	OLED_start();
+	/*OLED_start();
 
 	int y;
     for (y = 0; y < 128; y += 2){
@@ -71,16 +70,21 @@ char main(void) {
         }
     }
 
-	OLED_refresh();
+	OLED_refresh();*/
 
 
 	display_init();
+
+	display_string(0, "TEST");
+
 	display_update();
 
-	 display_image(0,  int_screen_buffer + 0 * 128);
-	 display_image(32, int_screen_buffer + 1 * 128);
-	 display_image(64, int_screen_buffer + 2 * 128);
-	 display_image(96, int_screen_buffer + 3 * 128);
+
+
+	/*display_image(0,  int_screen_buffer + 0 * 128);
+	display_image(32, int_screen_buffer + 1 * 128);
+	display_image(64, int_screen_buffer + 2 * 128);
+	display_image(96, int_screen_buffer + 3 * 128);*/
 
 	while( 1 );
 
