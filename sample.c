@@ -3,23 +3,23 @@
 #include "data.h"
 #include <stdint.h>
 
-void fourlines(void) {
+void fourlines(char r1[], char r2[], char r3[], char r4[]) {
     buffer_clear();
 
-    load_string(0, "Row 1");
-    load_string(1, "Row 2");
-    load_string(2, "Row 3");
-    load_string(3, "Row 4");
+    load_string(0, r1);
+    load_string(1, r2);
+    load_string(2, r3);
+    load_string(3, r4);
 
     display_write();
 }
 
-void threelines_and_menu(void) {
+void threelines_and_menu(char r1[], char r2[], char r3[]) {
     buffer_clear();
 
-    load_string(0, "Row 1");
-    load_string(1, "Row 2");
-    load_string(2, "Row 3");
+    load_string(0, r1);
+    load_string(1, r2);
+    load_string(2, r3);
 
     load_image(image_menu);
 
