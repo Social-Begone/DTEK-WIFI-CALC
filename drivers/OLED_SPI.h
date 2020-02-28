@@ -14,6 +14,9 @@ void display_clear(void);
 void load_image(const uint8_t* data);
 void load_string(int line, char* s);
 
+void set_pixel(int x, int y);
+void clr_pixel(int x, int y);
+
 void buffer_clear(void);
 
 

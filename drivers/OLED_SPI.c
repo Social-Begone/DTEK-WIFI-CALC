@@ -145,15 +145,13 @@ void buffer_clear(void) {
 		screen_buffer[column] = 0;
 }
 
-void load_image(const uint8_t* data)
-{
+void load_image(const uint8_t* data) {
 	int column;
 	for (column = 0; column < 128 * 4; column++)
 		screen_buffer[column] |= ~data[column];
 }
 
-void load_string(int line, char* s)
-{
+void load_string(int line, char* s){
 	if (line < 0 || line >= 4 || !s)
 		return;
 
@@ -167,7 +165,7 @@ void load_string(int line, char* s)
 		
 		if (!charValue)
 			break;
-			
+
 		if (!(charValue == ' ' || charValue & 0x80) ){
 			// characters are 8x8, 16 of them fit in a row
 			int charArea = character * 8;
@@ -180,3 +178,12 @@ void load_string(int line, char* s)
 	}
 }
 
+void set_pixel(int x, int y) {
+	uint8_t* column = y * 128 + x;
+	*column |= 1 << y % 8;
+}
+
+void clr_pixel(int x, int y) {
+	uint8_t* column = y * 128 + x;
+	*column &= ~(1 << y % 8);
+}
