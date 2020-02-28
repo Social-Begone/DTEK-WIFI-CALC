@@ -59,29 +59,6 @@ void display_init(void)
 	spi_send_recv(0xAF);
 }
 
-
-/* prev display_write
-	int x, y, pixelColumn;
-
-	for (x = 0; x < 128; x += 32)
-	{
-		for (y = 0; y < 4; y++)
-		{
-			DISPLAY_CHANGE_TO_COMMAND_MODE;
-
-			spi_send_recv(0x22);
-			spi_send_recv(y);
-
-			spi_send_recv(x & 0xF);
-			spi_send_recv(0x10 | ((x >> 4) & 0xF));
-
-			DISPLAY_CHANGE_TO_DATA_MODE;
-
-			for (pixelColumn = 0; pixelColumn < 32; pixelColumn++)
-				spi_send_recv(screen_buffer[x/32][y * 32 + pixelColumn]);
-		}
-	}
-*/
 void display_write(void)
 {
 	int x, y, pixelColumn;
@@ -106,38 +83,6 @@ void display_clear(void) {
 	buffer_clear();
 	display_write();
 }
-
-/* prev display image
-	int i, j;
-
-	for (i = 0; i < 4; i++)
-	{
-		DISPLAY_CHANGE_TO_COMMAND_MODE;
-
-		spi_send_recv(0x22);
-		spi_send_recv(i);
-
-		spi_send_recv(x & 0xF);
-		spi_send_recv(0x10 | ((x >> 4) & 0xF));
-
-		DISPLAY_CHANGE_TO_DATA_MODE;
-
-		for (j = 0; j < 32; j++)
-			spi_send_recv(~data[i * 32 + j]);
-	}
-
-	string
-		DISPLAY_CHANGE_TO_COMMAND_MODE;
-		spi_send_recv(0x22);
-		spi_send_recv(i);
-
-		spi_send_recv(0x0);
-		spi_send_recv(0x10);
-
-		DISPLAY_CHANGE_TO_DATA_MODE;
-*/
-
-
 
 void buffer_clear(void) {
 	int column;
@@ -179,11 +124,11 @@ void load_string(int line, char* s){
 }
 
 void set_pixel(int x, int y) {
-	uint8_t* column = y * 128 + x;
+	uint8_t* column = (uint8_t*)(y * 128 + x);
 	*column |= 1 << y % 8;
 }
 
 void clr_pixel(int x, int y) {
-	uint8_t* column = y * 128 + x;
+	uint8_t* column = (uint8_t*)(y * 128 + x);
 	*column &= ~(1 << y % 8);
 }

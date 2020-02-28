@@ -8,7 +8,7 @@
 #include <pic32mx.h>  /* Declarations of system-specific addresses etc */
 #include "data.h"  /* Declatations for these labs */
 
-const uint8_t const int_screen_buffer[] = {
+const uint8_t const image_menu[] = {
 0xff, 
 0xff, 
 0xff, 
