@@ -13,7 +13,6 @@
 #include "drivers/OLED_SPI.h"
 #include "drivers/OLED_I2C.h"
 #include "data.h"
-#include "sample.h"
 
 void user_isr() {} 
 
