@@ -1,3 +1,6 @@
+
+DRIVERS = drivers
+
 # PIC32 device number
 DEVICE		= 32MX320F128H
 
@@ -14,14 +17,14 @@ LINKSCRIPT	:= p$(shell echo "$(DEVICE)" | tr '[:upper:]' '[:lower:]').ld
 # Compiler and linker flags
 CFLAGS		+= -ffreestanding -march=mips32r2 -msoft-float -Wa,-msoft-float
 ASFLAGS		+= -msoft-float
-LDFLAGS		+= -T $(LINKSCRIPT)
+LDFLAGS		+= -T $(LINKSCRIPT) 
 
 # Filenames
 ELFFILE		= $(PROGNAME).elf
 HEXFILE		= $(PROGNAME).hex
 
 # Find all source files automatically
-CFILES          = $(wildcard *.c)
+CFILES          = $(wildcard *.c) $(wildcard */*.c)
 ASFILES         = $(wildcard *.S)
 SYMSFILES	= $(wildcard *.syms)
 
@@ -56,6 +59,7 @@ envcheck:
 
 install: envcheck
 	$(TARGET)avrdude -v -p $(shell echo "$(DEVICE)" | tr '[:lower:]' '[:upper:]') -c stk500v2 -P "$(TTYDEV)" -b $(TTYBAUD) -U "flash:w:$(HEXFILE)"
+	make clean
 
 $(ELFFILE): $(OBJFILES) envcheck
 	$(CC) $(CFLAGS) -o $@ $(OBJFILES) $(LDFLAGS)

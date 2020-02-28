@@ -9,9 +9,14 @@
 
 #include <stdint.h>   /* Declarations of uint_32 and the like */
 #include <pic32mx.h>  /* Declarations of system-specific addresses etc */
-#include "mipslab.h"  /* Declatations for these labs */
+#include "main.h"  /* Declatations for these labs */
+#include "drivers/OLED_SPI.h"
+#include "drivers/OLED_I2C.h"
+#include "data.h"
 
-int main(void) {
+void user_isr() {} 
+
+char main(void) {
         /*
 	  This will set the peripheral bus clock to the same frequency
 	  as the sysclock. That means 80 MHz, when the microcontroller
@@ -23,7 +28,7 @@ int main(void) {
 	OSCCONCLR = 0x180000; /* clear PBDIV bit <0,1> */
 	while(OSCCON & (1 << 21));  /* Wait until PBDIV ready */
 	SYSKEY = 0x0;  /* Lock OSCCON */
-	
+
 	/* Set up output pins */
 	AD1PCFG = 0xFFFF;
 	ODCE = 0x0;
@@ -48,28 +53,38 @@ int main(void) {
 	/* SPI2STAT bit SPIROV = 0; */
 	SPI2STATCLR = 0x40;
 	/* SPI2CON bit CKP = 1; */
-        SPI2CONSET = 0x40;
+    SPI2CONSET = 0x40;
 	/* SPI2CON bit MSTEN = 1; */
 	SPI2CONSET = 0x20;
 	/* SPI2CON bit ON = 1; */
 	SPI2CONSET = 0x8000;
 
+	/*OLED_start();
+
+	int y;
+    for (y = 0; y < 128; y += 2){
+        int x;
+        for (x = 0; x < 128; x++){
+            if ((ext_screen_buffer[y + (x / 64)] >> (x % 64)) & 1) 
+                OLED_setPixel(x, y >> 1);
+        }
+    }
+
+	OLED_refresh();*/
 
 
-    // MAY BE CHANGED FOR PROJECT (?)	
 	display_init();
-	display_string(0, "KTH/ICT lab");
-	display_string(1, "in Computer");
-	display_string(2, "Engineering");
-	display_string(3, "Welcome!");
-	display_update();
-	
-	display_image(96, icon);
-	
-	labinit(); /* Do any lab-specific initialization */
 
-	while( 1 ) {
-	    labwork(); /* Do lab-specific things again and again */
-	}
+	load_string(0, "SCHNEIDEER");
+	load_string(1, "JAAAAAA");
+	load_string(2, "YES?");
+
+	load_image(int_screen_buffer);
+
+	display_write();
+
+
+	while( 1 );
+
 	return 0;
 }
