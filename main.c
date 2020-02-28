@@ -13,6 +13,7 @@
 #include "drivers/OLED_SPI.h"
 #include "drivers/OLED_I2C.h"
 #include "data.h"
+#include "sample.h"
 
 void user_isr() {} 
 
@@ -59,32 +60,7 @@ char main(void) {
 	/* SPI2CON bit ON = 1; */
 	SPI2CONSET = 0x8000;
 
-	/*OLED_start();
-
-	int y;
-    for (y = 0; y < 128; y += 2){
-        int x;
-        for (x = 0; x < 128; x++){
-            if ((ext_screen_buffer[y + (x / 64)] >> (x % 64)) & 1) 
-                OLED_setPixel(x, y >> 1);
-        }
-    }
-
-	OLED_refresh();*/
-
-
-	display_init();
-
-	load_string(0, "SCHNEIDEER");
-	load_string(1, "JAAAAAA");
-	load_string(2, "YES?");
-
-	load_image(int_screen_buffer);
-
-	display_write();
-
-
-	while( 1 );
+	// CODE HERE
 
 	return 0;
 }

@@ -1,3 +1,5 @@
+#ifndef OLED_SPI_h
+#define OLED_SPI_h
 // Buffers
 char    textbuffer [4][16]; 
 uint8_t screen_buffer[4 * 128];// 4 pages, each with 4 rows of 32 8-bit columns 
@@ -19,4 +21,4 @@ void clr_pixel(int x, int y);
 
 void buffer_clear(void);
 
-
+#endif
