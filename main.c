@@ -75,16 +75,14 @@ char main(void) {
 
 	display_init();
 
-	display_string(0, "TEST");
+	load_string(0, "SCHNEIDEER");
+	load_string(1, "JAAAAAA");
+	load_string(2, "YES?");
 
-	display_update();
+	load_image(int_screen_buffer);
 
+	display_write();
 
-
-	/*display_image(0,  int_screen_buffer + 0 * 128);
-	display_image(32, int_screen_buffer + 1 * 128);
-	display_image(64, int_screen_buffer + 2 * 128);
-	display_image(96, int_screen_buffer + 3 * 128);*/
 
 	while( 1 );
 
