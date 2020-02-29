@@ -14,12 +14,18 @@ if __name__ == '__main__':
 
     perLine = 32 / length
 
-    with open(url, 'r') as file:
-        contents = file.read()
+    with open(url) as file:
+        contents = file.readlines()
 
-    contents = contents.replace(', ', '').replace('\n', '').replace('0x', '')
+    contents = [x.strip().replace('0x', '') for x in contents]
 
-    with open(url, 'w') as file:
-        file.write(contents)
-
+    newContents = []
     
+    for i in range(0, len(contents), length):
+        string = ''.join(['0x', ''.join(contents[i : i + length], ", "])
+        newContents[i] = string
+
+
+    newContents = [ (''.join(newContents[i : i + perLine]) + '\n') for i in range(0, len(newContents), perLine) ]
+
+    print(contents)
