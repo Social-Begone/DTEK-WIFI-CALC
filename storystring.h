@@ -1,0 +1,1 @@
+void story (void);
