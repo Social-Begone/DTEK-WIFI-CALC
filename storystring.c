@@ -17,6 +17,7 @@ fourlines(
 
 
 //Start
+void story(void){
 
 fourlines(
 "Oh, Hello!",
@@ -308,3 +309,5 @@ threelines_and_menu(
 );
 
 //ENDING
+
+}
