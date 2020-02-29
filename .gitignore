@@ -1,3 +1,9 @@
+# User defined
+out/
+.deps/
+.vscode/
+
+
 # Prerequisites
 *.d
 
