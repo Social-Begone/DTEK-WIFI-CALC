@@ -62,11 +62,11 @@ char main(void) {
 	SPI2CONSET = 0x8000;
 
 	// CODE HERE
-	while(1){
-
 	display_init();
 
 	buffer_clear();
+
+	while(1){
 
 	option_screen();
 

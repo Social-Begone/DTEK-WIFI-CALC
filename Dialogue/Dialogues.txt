@@ -258,3 +258,145 @@ TESTTESTTESTTEST
 TESTTESTTESTTEST
 TESTTESTTESTTEST
 TESTTESTTESTTEST
+
+
+
+void story (int nextconv, int currentbtn, int currentstage) {
+  fourlines(
+  "Oh, Hello!",
+  "Are you starting",
+  "this math course",
+  "as well?"
+  );
+
+
+ 
+  
+
+ 
+
+  //next response
+
+
+
+
+
+  
+
+
+  
+
+
+  //next response
+
+
+
+
+
+
+
+
+
+
+  //monologue1
+
+  fourlines(
+  "\"Meet me at the",
+  "cafe once you're",
+  "finished today.\"",
+  ""
+  );
+  fourlines(
+  "The day flies by",
+  "as you attend",
+  "classes filled",
+  "with knowledge."
+  );
+  fourlines(
+  "As you finish",
+  "your last lesson",
+  "for the day you",
+  "remember..."
+  );
+  fourlines(
+  "You are late to",
+  "the cafe! So",
+  "you hurry out",
+  "the building..."
+  );
+
+  //Minigame
+
+  fourlines(
+  "Hi, you!",
+  "Ready to get",
+  "started?",
+  ""
+  );
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+  //monologue2
+
+  fourlines(
+  "Both of you sit",
+  "and run through",
+  "the papers.",
+  ""
+  );
+  fourlines(
+  "Answering the",
+  "questions while",
+  "the cafe buzz",
+  "around you two."
+  );
+  fourlines(
+  "You sit and work",
+  "in full focus",
+  "when you realize",
+  "the time..."
+  );
+
+  //Dialogue
+
+  fourlines(
+  "It is getting",
+  "late, what are",
+  "you doing later",
+  "this evening?"
+  );
+
+
+
+  
+
+
+
+
+
+
+
+
+  //Last Dialogue
+
+
+
+
+
+  threelines_and_menu(
+  "I'd love to!",
+  "",
+  ""
+  );
+}
