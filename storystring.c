@@ -288,8 +288,8 @@ if(nextconv == 0){
     }
     if(currentstage == 6){
       threelines_and_menu(
-      "Nah maybe",
-      "not sure.",
+      "I'd love to!",
+      "",
       ""
       );
     }
