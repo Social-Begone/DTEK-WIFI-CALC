@@ -14,6 +14,9 @@
 #include "drivers/OLED_I2C.h"
 #include "data.h"
 
+#include "minigame/game.h"
+#include "minigame/levels.h"
+
 void user_isr() {} 
 
 char main(void) {
@@ -60,6 +63,8 @@ char main(void) {
 	SPI2CONSET = 0x8000;
 
 	// CODE HERE
+
+
 
 	return 0;
 }

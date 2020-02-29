@@ -5,7 +5,7 @@
 #define BTN1 (PORTF & 1)
 #define BTN2 (( PORTD >> 5) & 1 )
 #define BTN3 (( PORTD >> 6) & 1 )
-#define BTN3 (( PORTD >> 7) & 1 )
+#define BTN4 (( PORTD >> 7) & 1 )
 #define BTNA ((( PORTD >> 4) & 0xe) | BTN1 )
 
 #define BTN1_VAL BTN1

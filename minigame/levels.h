@@ -1,9 +1,5 @@
 #ifndef LEVELS_h
 #define LEVELS_h
 
-// extern const uint8_t levelName
-// #define LEVELNAME_WIDTH
-
-
-
+const extern uint8_t const level1[128*4];
 #endif
