@@ -437,6 +437,7 @@ void option_screen(void){
       } else {
         nextconv = 1;
       }
+      while (getbtns() == 1);
     }
     if(getbtns() == 2){
       if(nextconv == 1){
@@ -444,6 +445,7 @@ void option_screen(void){
       }
       nextconv = 0;
       currentbtn = 2;
+      while (getbtns() == 2);
     }
     if(getbtns() == 4){
       if(nextconv == 1){
@@ -451,6 +453,7 @@ void option_screen(void){
       }
       nextconv = 0;
       currentbtn = 3;
+      while (getbtns() == 4);
     }
     if(getbtns() == 8){
       if(nextconv == 1){
@@ -458,6 +461,7 @@ void option_screen(void){
       }
       nextconv = 0;
       currentbtn = 4;
+      while (getbtns() == 8);
     }
 
     buffer_clear();
