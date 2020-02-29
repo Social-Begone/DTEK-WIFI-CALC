@@ -1,5 +1,5 @@
-#include "sample.h"
 #include <stdint.h>
+#include "sample.h"
 
 /*
 threelines_and_menu(
@@ -97,7 +97,7 @@ fourlines(
 threelines_and_menu(
 "Maybe with you",
 "around I'll get",
-"the hang of it.",
+"the hang of it."
 );
 fourlines(
 "I feel the same.",

@@ -13,8 +13,9 @@
 #include "drivers/OLED_SPI.h"
 #include "drivers/OLED_I2C.h"
 #include "data.h"
+#include "sample.h"
 
-void user_isr() {} 
+void user_isr() {}
 
 char main(void) {
         /*
@@ -34,7 +35,7 @@ char main(void) {
 	ODCE = 0x0;
 	TRISECLR = 0xFF;
 	PORTE = 0x0;
-	
+
 	/* Output pins for display signals */
 	PORTF = 0xFFFF;
 	PORTG = (1 << 9);
@@ -42,11 +43,11 @@ char main(void) {
 	ODCG = 0x0;
 	TRISFCLR = 0x70;
 	TRISGCLR = 0x200;
-	
+
 	/* Set up input pins */
 	TRISDSET = (1 << 8);
 	TRISFSET = (1 << 1);
-	
+
 	/* Set up SPI as master */
 	SPI2CON = 0;
 	SPI2BRG = 4;
@@ -60,6 +61,30 @@ char main(void) {
 	SPI2CONSET = 0x8000;
 
 	// CODE HERE
+	display_init();
+
+	buffer_clear();
+
+
+	load_image(image_menu);
+
+	set_pixel(0, 1);
+	set_pixel(1, 1);
+	set_pixel(2, 1);
+	set_pixel(3, 1);
+	set_pixel(4, 1);
+	set_pixel(5, 1);
+
+	clr_pixel(0, 2);
+	clr_pixel(1, 2);
+	clr_pixel(2, 2);
+	clr_pixel(3, 2);
+	clr_pixel(4, 2);
+	clr_pixel(5, 2);
+
+	display_write();
+
+
 
 	return 0;
 }
