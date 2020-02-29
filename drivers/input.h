@@ -2,7 +2,7 @@
 #define BUTTONS_h
 #include <pic32mx.h>
 
-#define BTN1 (PORTF & 1)
+#define BTN1 ((PORTF >> 1) & 1)
 #define BTN2 (( PORTD >> 5) & 1 )
 #define BTN3 (( PORTD >> 6) & 1 )
 #define BTN4 (( PORTD >> 7) & 1 )
