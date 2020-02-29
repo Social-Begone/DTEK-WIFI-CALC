@@ -2,25 +2,128 @@
 #include "sample.h"
 #include "input.h"
 
-/*
-threelines_and_menu(
-""
-""
-""
-);
-fourlines(
-""
-""
-""
-""
-);
-*/
+int love = 0;
+int friendly = 0;
+int neutral = 0;
 
-//Start
+int currentmonologue = 0;   //currentmonologue: 3 = Neutral, 4 = Friendly, 5 = Love
+int submonologue = 0;
 
 int nextconv = 0;
 int currentbtn = 4;
 int currentstage = 1;
+
+void monologue (int currentmonologue, int submonologue) {
+  if(currentmonologue == 0){
+    if(submonologue == 0){
+      fourlines(
+      "Oh, Hello!",
+      "Are you starting",
+      "this math course",
+      "as well?"
+      );
+    }
+    if(submonologue == 1){
+    currentmonologue = 0;
+    }
+  }
+  if(currentmonologue == 1){
+    if(submonologue == 0){
+      fourlines(
+      "\"Meet me at the",
+      "cafe once you're",
+      "finished today.\"",
+      ""
+      );
+    }
+    if(submonologue == 1){
+      fourlines(
+      "The day flies by",
+      "as you attend",
+      "classes filled",
+      "with knowledge."
+      );
+    }
+    if(submonologue == 2){
+      fourlines(
+      "As you finish ",
+      "your last lesson",
+      "for the day you",
+      "remember..."
+      );
+    }
+    if(submonologue == 3){
+      fourlines(
+      "You are late to",
+      "the cafe! So",
+      "you hurry out",
+      "the building..."
+      );
+    }
+    if(submonologue == 4){
+    currentmonologue = 0;
+    }
+  }
+  if(currentmonologue == 2){
+    if(submonologue == 0){
+      fourlines(
+      "Both of you sit",
+      "and run through",
+      "the papers.",
+      ""
+      );
+    }
+    if(submonologue == 1){
+      fourlines(
+      "Answering the",
+      "questions while",
+      "the cafe buzz",
+      "around you two."
+      );
+    }
+    if(submonologue == 2){
+      fourlines(
+      "You sit and work",
+      "in full focus",
+      "when you realize",
+      "the time..."
+      );
+    }
+    if(submonologue == 3){
+    currentmonologue = 0;
+    }
+  }
+  if(currentmonologue == 3){
+    if(submonologue == 0){
+      fourlines(
+      "",
+      "",
+      "",
+      ""
+      );
+    }
+  }
+  if(currentmonologue == 4){
+    if(submonologue == 0){
+      fourlines(
+      "",
+      "",
+      "",
+      ""
+      );
+    }
+  }
+  if(currentmonologue == 5){
+    if(submonologue == 0){
+      fourlines(
+      "",
+      "",
+      "",
+      ""
+      );
+    }
+  }
+}
 
 void story (int nextconv, int currentbtn, int currentstage) {
   if(nextconv == 1){
@@ -32,6 +135,7 @@ void story (int nextconv, int currentbtn, int currentstage) {
         "you if you are",
         "good with math."
         );
+        love++;
       }
       if(currentstage == 2){
         fourlines(
@@ -40,6 +144,7 @@ void story (int nextconv, int currentbtn, int currentstage) {
           "class? Two is",
           "better than one."
           );
+          friendly++;
       }
       if(currentstage == 3){
         fourlines(
@@ -48,6 +153,7 @@ void story (int nextconv, int currentbtn, int currentstage) {
         "class.",
         ""
         );
+        neutral++;
       }
       if(currentstage == 4){
         fourlines(
@@ -56,6 +162,7 @@ void story (int nextconv, int currentbtn, int currentstage) {
         "great studying",
         "session!"
         );
+        friendly++;
       }
       if(currentstage == 5){
         fourlines(
@@ -64,6 +171,7 @@ void story (int nextconv, int currentbtn, int currentstage) {
         "time with you.",
         "what do you say?"
         );
+        love++;
       }
       if(currentstage == 6){
 
@@ -77,6 +185,7 @@ void story (int nextconv, int currentbtn, int currentstage) {
         "Are you any good",
         "with math?"
         );
+        friendly++;
       }
       if(currentstage == 2){
         fourlines(
@@ -85,6 +194,7 @@ void story (int nextconv, int currentbtn, int currentstage) {
           "maybe we can do",
           "a study group?"
           );
+          neutral++;
       }
       if(currentstage == 3){
         fourlines(
@@ -93,6 +203,7 @@ void story (int nextconv, int currentbtn, int currentstage) {
         "class!",
         ""
         );
+        love++;
       }
       if(currentstage == 4){
         fourlines(
@@ -101,6 +212,7 @@ void story (int nextconv, int currentbtn, int currentstage) {
         "if I got to meet",
         "you."
         );
+        love++;
       }
       if(currentstage == 5){
         fourlines(
@@ -109,6 +221,7 @@ void story (int nextconv, int currentbtn, int currentstage) {
         "out, what do you",
         "say?"
         );
+        friendly++;
       }
       if(currentstage == 6){
 
@@ -122,6 +235,7 @@ void story (int nextconv, int currentbtn, int currentstage) {
         "with math?",
         ""
         );
+        neutral++;
       }
       if(currentstage == 2){
         fourlines(
@@ -130,6 +244,7 @@ void story (int nextconv, int currentbtn, int currentstage) {
         "study together",
         "after class!"
         );
+        love++;
       }
       if(currentstage == 3){
         fourlines(
@@ -138,14 +253,16 @@ void story (int nextconv, int currentbtn, int currentstage) {
         "about to start!",
         ""
         );
+        friendly++;
       }
       if(currentstage == 4){
         fourlines(
-"You're right.",
-"let's get on",
-"with the work.",
-""
-);
+        "You're right.",
+        "let's get on",
+        "with the work.",
+        ""
+        );
+        neutral++;
       }
       if(currentstage == 5){
         fourlines(
@@ -154,6 +271,7 @@ void story (int nextconv, int currentbtn, int currentstage) {
         "else later",
         "this evening?"
         );
+        neutral++;
       }
       if(currentstage == 6){
 
@@ -216,10 +334,10 @@ if(nextconv == 0){
     }
     if(currentstage == 2){
       threelines_and_menu(
-"I mean, I am ok",
-"at it i guess.",
-""
-);
+      "I mean, I am ok",
+      "at it i guess.",
+      ""
+      );
     }
     if(currentstage == 3){
       threelines_and_menu(
@@ -312,343 +430,53 @@ void selectbtn(int shift){
 }
 
 void option_screen(void){
-  if(getbtns() == 1){
-    nextconv = 1;
-  }
-  if(getbtns() == 2){
-    if(nextconv == 1){
-      currentstage++;
+    if(getbtns() == 1){
+      if(nextconv == 1){
+        currentstage++;
+        nextconv = 0;
+      } else {
+        nextconv = 1;
+      }
     }
-    nextconv = 0;
-    currentbtn = 2;
-  }
-  if(getbtns() == 4){
-    if(nextconv == 1){
-      currentstage++;
+    if(getbtns() == 2){
+      if(nextconv == 1){
+        currentstage++;
+      }
+      nextconv = 0;
+      currentbtn = 2;
     }
-    nextconv = 0;
-    currentbtn = 3;
-  }
-  if(getbtns() == 8){
-    if(nextconv == 1){
-      currentstage++;
+    if(getbtns() == 4){
+      if(nextconv == 1){
+        currentstage++;
+      }
+      nextconv = 0;
+      currentbtn = 3;
     }
-    nextconv = 0;
-    currentbtn = 4;
-  }
+    if(getbtns() == 8){
+      if(nextconv == 1){
+        currentstage++;
+      }
+      nextconv = 0;
+      currentbtn = 4;
+    }
 
-  buffer_clear();
+    buffer_clear();
 
-  if(nextconv == 1){
-    story (nextconv, currentbtn, currentstage);
-  }
-  else{
-  if(currentbtn == 2){
-    story (nextconv, currentbtn, currentstage);
-    selectbtn(2);
-  }
-  if(currentbtn == 3){
-    story (nextconv, currentbtn, currentstage);
-    selectbtn(1);
-  }
-  if(currentbtn == 4){
-    story (nextconv, currentbtn, currentstage);
-    selectbtn(0);
+    if(nextconv == 1){
+      story (nextconv, currentbtn, currentstage);
+    }
+    else {
+    if(currentbtn == 2){
+      story (nextconv, currentbtn, currentstage);
+      selectbtn(2);
+    }
+    if(currentbtn == 3){
+      story (nextconv, currentbtn, currentstage);
+      selectbtn(1);
+    }
+    if(currentbtn == 4){
+      story (nextconv, currentbtn, currentstage);
+      selectbtn(0);
+    }
   }
 }
-}
-
-
-
-/*
-void story (int nextconv, int currentbtn, int currentstage) {
-  fourlines(
-  "Oh, Hello!",
-  "Are you starting",
-  "this math course",
-  "as well?"
-  );
-
-
-  threelines_and_menu(
-  "Yeah, I guess",
-  "we'll be stuck",
-  "together."
-  );
-  fourlines(
-  "I wouldn't mind",
-  "being stuck with",
-  "you if you are",
-  "good with math."
-  );
-
-
-  threelines_and_menu(
-  "I am! Wanna grab",
-  "a seat in the",
-  "classroom?"
-  );
-  fourlines(
-  "Yeah lets sit",
-  "together!",
-  "Are you any good",
-  "with math?"
-  );
-
-
-  threelines_and_menu(
-  "Hi, yeah I will",
-  "be reading this",
-  "course."
-  );
-  fourlines(
-  "Right, tell me.",
-  "Are you any good",
-  "with math?",
-  ""
-  );
-
-  //next response
-
-  threelines_and_menu(
-  "Well, I am kinda",
-  "getting the hang",
-  "of it."
-  );
-  fourlines(
-  "Hmmm, maybe we",
-  "can study after",
-  "class? Two is",
-  "better than one."
-  );
-
-
-  threelines_and_menu(
-  "I mean, I am ok",
-  "at it i guess.",
-  ""
-  );
-  fourlines(
-  "I feel behind on",
-  "math in general",
-  "maybe we can do",
-  "a study group?"
-  );
-
-
-  threelines_and_menu(
-  "Maybe with you",
-  "around I'll get",
-  "the hang of it."
-  );
-  fourlines(
-  "I feel the same.",
-  "We should totaly",
-  "study together",
-  "after class!"
-  );
-
-  //next response
-
-  threelines_and_menu(
-  "Maybe we'll",
-  "start one",
-  "someday."
-  );
-  fourlines(
-  "Right, maybe.",
-  "Let's head into",
-  "class.",
-  ""
-  );
-
-  threelines_and_menu(
-  "I won't survive",
-  "this course any",
-  "other way."
-  );
-  fourlines(
-  "Come on! Let's",
-  "sit together in",
-  "class!",
-  ""
-  );
-
-  threelines_and_menu(
-  "Together we will",
-  "ace the course",
-  "for sure!"
-  );
-  fourlines(
-  "For sure! Come",
-  "our lesson is",
-  "about to start!",
-  ""
-  );
-
-  //monologue1
-
-  fourlines(
-  "\"Meet me at the",
-  "cafe once you're",
-  "finished today.\"",
-  ""
-  );
-  fourlines(
-  "The day flies by",
-  "as you attend",
-  "classes filled",
-  "with knowledge."
-  );
-  fourlines(
-  "As you finish",
-  "your last lesson",
-  "for the day you",
-  "remember..."
-  );
-  fourlines(
-  "You are late to",
-  "the cafe! So",
-  "you hurry out",
-  "the building..."
-  );
-
-  //Minigame
-
-  fourlines(
-  "Hi, you!",
-  "Ready to get",
-  "started?",
-  ""
-  );
-
-
-
-  threelines_and_menu(
-  "Let's study like",
-  "never before!",
-  ""
-  );
-  fourlines(
-  "Hell yeah! This",
-  "is going to be a",
-  "great studying",
-  "session!"
-  );
-
-
-  threelines_and_menu(
-  "I am ready now",
-  "that I am with",
-  "you."
-  );
-  fourlines(
-  "Mmmmmmm",
-  "I'd always study",
-  "if I got to meet",
-  "you."
-  );
-
-
-  threelines_and_menu(
-  "Let's just dish",
-  "this days class",
-  "off"
-  );
-  fourlines(
-  "You're right.",
-  "let's get on",
-  "with the work.",
-  ""
-  );
-
-  //monologue2
-
-  fourlines(
-  "Both of you sit",
-  "and run through",
-  "the papers.",
-  ""
-  );
-  fourlines(
-  "Answering the",
-  "questions while",
-  "the cafe buzz",
-  "around you two."
-  );
-  fourlines(
-  "You sit and work",
-  "in full focus",
-  "when you realize",
-  "the time..."
-  );
-
-  //Dialogue
-
-  fourlines(
-  "It is getting",
-  "late, what are",
-  "you doing later",
-  "this evening?"
-  );
-
-
-
-  threelines_and_menu(
-  "If you are free",
-  "we could hang",
-  "some more."
-  );
-  fourlines(
-  "I wouldn't mind",
-  "spending more",
-  "time with you.",
-  "what do you say?"
-  );
-
-  threelines_and_menu(
-  "Nothing planned",
-  "I'd love to do",
-  "something though"
-  );
-  fourlines(
-  "Maybe we could",
-  "figure something",
-  "out, what do you",
-  "say?"
-  );
-
-  threelines_and_menu(
-  "I don't know, I",
-  "might go home,",
-  "watch a movie."
-  );
-  fourlines(
-  "Don't you want",
-  "to do something",
-  "else later",
-  "this evening?"
-  );
-
-  //Last Dialogue
-
-  threelines_and_menu(
-  "We should def.",
-  "do something",
-  "tonight!"
-  );
-
-  threelines_and_menu(
-  "Nah maybe",
-  "not sure.",
-  ""
-  );
-
-  threelines_and_menu(
-  "I'd love to!",
-  "",
-  ""
-  );
-}
-//ENDING
-*/
