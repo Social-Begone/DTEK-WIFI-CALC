@@ -6,6 +6,7 @@ int love = 0;
 int friendly = 0;
 int neutral = 0;
 
+int monologuetoggle = 1;
 int currentmonologue = 0;   //currentmonologue: 3 = Neutral, 4 = Friendly, 5 = Love
 int submonologue = 0;
 
@@ -24,7 +25,9 @@ void monologue (int currentmonologue, int submonologue) {
       );
     }
     if(submonologue == 1){
-    currentmonologue = 0;
+    currentmonologue++;
+    monologuetoggle = 0;
+    submonologue = 0;
     }
   }
   if(currentmonologue == 1){
@@ -61,7 +64,9 @@ void monologue (int currentmonologue, int submonologue) {
       );
     }
     if(submonologue == 4){
-    currentmonologue = 0;
+      currentmonologue++;
+      monologuetoggle = 0;
+      submonologue = 0;
     }
   }
   if(currentmonologue == 2){
@@ -90,7 +95,9 @@ void monologue (int currentmonologue, int submonologue) {
       );
     }
     if(submonologue == 3){
-    currentmonologue = 0;
+      currentmonologue++;
+      monologuetoggle = 0;
+      submonologue = 0;
     }
   }
   if(currentmonologue == 3){
@@ -154,6 +161,7 @@ void story (int nextconv, int currentbtn, int currentstage) {
         ""
         );
         neutral++;
+        monologuetoggle = 1;
       }
       if(currentstage == 4){
         fourlines(
@@ -163,6 +171,7 @@ void story (int nextconv, int currentbtn, int currentstage) {
         "session!"
         );
         friendly++;
+        monologuetoggle = 1;
       }
       if(currentstage == 5){
         fourlines(
@@ -204,6 +213,7 @@ void story (int nextconv, int currentbtn, int currentstage) {
         ""
         );
         love++;
+        monologuetoggle = 1;
       }
       if(currentstage == 4){
         fourlines(
@@ -213,6 +223,7 @@ void story (int nextconv, int currentbtn, int currentstage) {
         "you."
         );
         love++;
+        monologuetoggle = 1;
       }
       if(currentstage == 5){
         fourlines(
@@ -254,6 +265,7 @@ void story (int nextconv, int currentbtn, int currentstage) {
         ""
         );
         friendly++;
+        monologuetoggle = 1;
       }
       if(currentstage == 4){
         fourlines(
@@ -263,6 +275,7 @@ void story (int nextconv, int currentbtn, int currentstage) {
         ""
         );
         neutral++;
+        monologuetoggle = 1;
       }
       if(currentstage == 5){
         fourlines(
@@ -429,44 +442,56 @@ void selectbtn(int shift){
 
 }
 
-void option_screen(void){
-    if(getbtns() == 1){
-      if(nextconv == 1){
+void option_screen(void) {
+    if(getbtns() == 1) {
+      if(monologuetoggle) {
+        submonologue++;
+      }
+      else {
+      if(nextconv == 1) {
         currentstage++;
         nextconv = 0;
       } else {
         nextconv = 1;
       }
-      while (getbtns() == 1);
+    }
     }
     if(getbtns() == 2){
-      if(nextconv == 1){
-        currentstage++;
+      if(monologuetoggle) {}
+      else{
+        if(nextconv == 1){}
+        else {
+        currentbtn = 2;
+        }
       }
-      nextconv = 0;
-      currentbtn = 2;
-      while (getbtns() == 2);
     }
     if(getbtns() == 4){
-      if(nextconv == 1){
-        currentstage++;
+      if(monologuetoggle) {}
+      else{
+        if(nextconv == 1){}
+        else {
+        currentbtn = 3;
+        }
       }
-      nextconv = 0;
-      currentbtn = 3;
-      while (getbtns() == 4);
     }
     if(getbtns() == 8){
-      if(nextconv == 1){
-        currentstage++;
+      if(monologuetoggle) {}
+      else{
+        if(nextconv == 1){}
+        else {
+        currentbtn = 4;
+        }
       }
-      nextconv = 0;
-      currentbtn = 4;
-      while (getbtns() == 8);
     }
 
+    while (getbtns());
     buffer_clear();
 
-    if(nextconv == 1){
+    if(monologuetoggle) {
+    monologue (currentmonologue, submonologue);
+    }
+    else {
+    if(nextconv){
       story (nextconv, currentbtn, currentstage);
     }
     else {
@@ -483,4 +508,5 @@ void option_screen(void){
       selectbtn(0);
     }
   }
+}
 }
