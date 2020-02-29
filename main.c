@@ -14,6 +14,7 @@
 #include "drivers/OLED_I2C.h"
 #include "data.h"
 #include "sample.h"
+#include "storystring.h"
 
 void user_isr() {}
 
@@ -61,30 +62,17 @@ char main(void) {
 	SPI2CONSET = 0x8000;
 
 	// CODE HERE
+	while(1){
+
 	display_init();
 
 	buffer_clear();
 
-
-	load_image(image_menu);
-
-	set_pixel(0, 1);
-	set_pixel(1, 1);
-	set_pixel(2, 1);
-	set_pixel(3, 1);
-	set_pixel(4, 1);
-	set_pixel(5, 1);
-
-	clr_pixel(0, 2);
-	clr_pixel(1, 2);
-	clr_pixel(2, 2);
-	clr_pixel(3, 2);
-	clr_pixel(4, 2);
-	clr_pixel(5, 2);
+	option_screen();
 
 	display_write();
 
-
+}
 
 	return 0;
 }

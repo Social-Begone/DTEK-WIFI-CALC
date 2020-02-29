@@ -1,1 +1,1 @@
-void story(void);
+void story (void);
