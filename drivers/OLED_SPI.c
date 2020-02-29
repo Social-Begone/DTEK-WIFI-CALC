@@ -65,15 +65,15 @@ void display_write(void)
 
 	for (y = pixelColumn = 0; y < 4; y++) {
 		DISPLAY_CHANGE_TO_COMMAND_MODE;
-		
+
 		spi_send_recv(0x22);
 		spi_send_recv(y);
-		
+
 		spi_send_recv(0x00);
 		spi_send_recv(0x10);
-		
+
 		DISPLAY_CHANGE_TO_DATA_MODE;
-		
+
 		for (x = 0; x < 128; x++)
 			spi_send_recv(screen_buffer[pixelColumn++]);
 	}
@@ -107,14 +107,14 @@ void load_string(int line, char* s){
 
 	for (character = 0; character < 16; character++, s++){
 		charValue = *s;
-		
+
 		if (!charValue)
 			break;
 
 		if (!(charValue == ' ' || charValue & 0x80) ){
 			// characters are 8x8, 16 of them fit in a row
 			int charArea = character * 8;
-			
+
 			for (charPixelColumn = 0; charPixelColumn < 8; charPixelColumn++)
 				screen_buffer[row + charArea + charPixelColumn] |= font[charValue * 8 + charPixelColumn];
 				// each cad goes up to 32 bits, 4 sets of 8 (columns), go through these columns
@@ -124,7 +124,7 @@ void load_string(int line, char* s){
 }
 
 void clr_pixel(int x, int y) {
-	uint8_t* column = (uint8_t*)(screen_buffer + (y / 8) * 128 + x);
+	uint8_t* column = (uint8_t*)(screen_buffer + ( y / 8 ) * 128 + x);
 	*column |= 1 << y % 8;
 }
 
