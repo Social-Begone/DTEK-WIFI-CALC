@@ -24,7 +24,7 @@ ELFFILE		= $(PROGNAME).elf
 HEXFILE		= $(PROGNAME).hex
 
 # Find all source files automatically
-CFILES          = $(wildcard *.c) $(wildcard */*.c)
+CFILES          = $(wildcard *.c) $(wildcard drivers/*.c)
 ASFILES         = $(wildcard *.S)
 SYMSFILES	= $(wildcard *.syms)
 
