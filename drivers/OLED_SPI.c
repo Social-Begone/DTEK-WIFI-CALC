@@ -123,7 +123,6 @@ void load_string(int line, char* s){
 	}
 }
 
-<<<<<<< HEAD
 void set_pixel(int x, int y) {
 	screen_buffer[( y / 8 ) * 128 + x] |= 1 << y % 8;
 }
@@ -131,14 +130,3 @@ void set_pixel(int x, int y) {
 void clr_pixel(int x, int y) {
 	screen_buffer[( y / 8 ) * 128 + x] &= ~(1 << y % 8);
 }
-=======
-void clr_pixel(int x, int y) {
-	uint8_t* column = (uint8_t*)(screen_buffer + ( y / 8 ) * 128 + x);
-	*column |= 1 << y % 8;
-}
-
-void set_pixel(int x, int y) {
-	uint8_t* column = (uint8_t*)(screen_buffer + ( y / 8 ) * 128 + x);
-	*column &= ~(1 << y % 8);
-}
->>>>>>> master

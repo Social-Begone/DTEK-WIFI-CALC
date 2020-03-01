@@ -1,4 +1,3 @@
-<<<<<<< HEAD:drivers/input.h
 #ifndef BUTTONS_h
 #define BUTTONS_h
 #include <pic32mx.h>
@@ -28,6 +27,3 @@
 #define SWTA_VAL (PORTD & (0xf << 8))
 
 #endif
-=======
-int getbtns (void);
->>>>>>> master:input.h
