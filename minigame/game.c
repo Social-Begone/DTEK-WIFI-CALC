@@ -20,17 +20,20 @@ void init(const uint8_t* level, position player, const position goal) {
 }
 
 void draw(void) {
+    // Reset buffer
     buffer_clear();
 
-    // load_image(_level);
+    // Draw level
+    load_image(_level);
 
     int x, y;
     
+    // Draw player
     for (y = 0; y < P_HEIGHT; y++)
         for (x = 0; x < P_WIDTH; x++)
             set_pixel(p.x + x, p.y + y);
 
-
+    // Draw goal
     for (y = -1; y < 1 + P_HEIGHT; y++){
         for (x = -1; x < 1 + P_WIDTH; x++) {
             if (y > -1 && y < P_HEIGHT &&
@@ -41,9 +44,14 @@ void draw(void) {
         }
     }
 
+    // Write buffer
     display_write();
 }
 
+/* 
+    Returns false if on edge of structure or screen.
+    Returns true  if on walkable area.
+*/
 int checkbounds(int x, int y) {
     if (x < 0 || x > 128 - P_WIDTH || y < 0 || y > 32 - P_HEIGHT) return 0;
     
@@ -51,15 +59,31 @@ int checkbounds(int x, int y) {
     return (column & (1 << y % 8));
 }
 
+void up() { 
+    if (checkbounds(p.x, p.y - P_HEIGHT)) p.y -= P_HEIGHT;
+}
+
+void down() {
+    if (checkbounds(p.x, p.y + P_HEIGHT)) p.y += P_HEIGHT;
+}
+
+void left() {
+    if (checkbounds(p.x - P_HEIGHT, p.y)) p.x -= P_WIDTH;
+}
+
+void right() {
+    if (checkbounds(p.x + P_WIDTH, p.y)) p.x += P_WIDTH;
+}
+
 void logic(void) {
     switch (BTNA) {
-        case 0x1: if (checkbounds(p.x + P_WIDTH, p.y)) p.x += P_WIDTH;
+        case 0x1: right();
             break;
-        case 0x2: if (checkbounds(p.x, p.y - P_HEIGHT)) p.y -= P_HEIGHT;
+        case 0x2: left();
             break;
-        case 0x4: if (checkbounds(p.x, p.y + P_HEIGHT)) p.y += P_HEIGHT;
+        case 0x4: down();
             break;
-        case 0x8: if (checkbounds(p.x - P_HEIGHT, p.y)) p.x -= P_WIDTH;
+        case 0x8: up();
             break;
     }
     while (BTNA);

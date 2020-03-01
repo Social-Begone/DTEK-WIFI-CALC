@@ -13,8 +13,9 @@
 #include "drivers/OLED_SPI.h"
 #include "drivers/OLED_I2C.h"
 #include "data.h"
-#include "sample.h"
 #include "storystring.h"
+#include "minigame/game.h"
+#include "minigame/levels.h"
 
 void user_isr() {}
 
@@ -64,15 +65,16 @@ char main(void) {
 	// CODE HERE
 	display_init();
 
-	buffer_clear();
+	position player;
+		player.x = 0;
+		player.y = 0;
+	position goal;
+		goal.x   = 12;
+		goal.y   = 12;
 
-	while(1){
+	init(level1, player, goal);
+	game();
 
-	option_screen();
-
-	display_write();
-
-}
 
 	return 0;
 }

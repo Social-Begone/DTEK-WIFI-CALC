@@ -17,12 +17,11 @@ if __name__ == '__main__':
     with open(url) as file:
         contents = file.readlines()
 
-    contents = [x.strip().replace('0x', '') for x in contents]
-
-    newContents = []
+    contents = [x.strip().replace('0x', '').replace(',', '') for x in contents]
+    contents = [ for x in range(0, len(contents),  ]
     
     for i in range(0, len(contents), length):
-        string = ''.join(['0x', ''.join(contents[i : i + length], ", "])
+        string = ''.join(['0x', ''.join(contents[i : i + length], ", "]))
         newContents[i] = string
 
 
