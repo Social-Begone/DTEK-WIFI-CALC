@@ -9,6 +9,8 @@
 position player;
 position goal;
 
+int readread = 0;
+
 int love = 0;
 int friendly = 0;
 int neutral = 0;
@@ -357,7 +359,7 @@ void story () {
   if(nextconv == 1){
     if(currentstage == 6){
 
-      if(btn2add > 4 || btn3add > 4 || btn4add > 4) {
+      if(btn4add == 5 || btn3add == 5 || btn2add == 5) {
         currentmonologue = 6;
       }
       else {
@@ -388,8 +390,11 @@ void story () {
         "you if you are",
         "good with math."
         );
+        if (readread){
         love++;
         btn2add++;
+        readread = 0;
+      }
       }
       if(currentstage == 2){
         fourlines(
@@ -398,8 +403,11 @@ void story () {
           "class? Two is",
           "better than one."
           );
+          if (readread){
           friendly++;
           btn2add++;
+          readread = 0;
+        }
       }
       if(currentstage == 3){
         fourlines(
@@ -438,8 +446,11 @@ void story () {
         "time with you.",
         "what do you say?"
         );
+        if (readread){
         love++;
         btn2add++;
+        readread = 0;
+      }
       }
     }
     if(currentbtn == 3){
@@ -450,8 +461,11 @@ void story () {
         "Are you any good",
         "with math?"
         );
+        if (readread){
         friendly++;
         btn3add++;
+        readread = 0;
+      }
       }
       if(currentstage == 2){
         fourlines(
@@ -460,8 +474,11 @@ void story () {
           "maybe we can do",
           "a study group?"
           );
+          if (readread){
           neutral++;
           btn3add++;
+          readread = 0;
+        }
       }
       if(currentstage == 3){
         fourlines(
@@ -500,8 +517,11 @@ void story () {
         "out, what do you",
         "say?"
         );
+        if (readread){
+        readread = 0;
         friendly++;
         btn3add++;
+        }
       }
     }
     if(currentbtn == 4){
@@ -512,8 +532,11 @@ void story () {
         "with math?",
         ""
         );
+        if (readread){
         neutral++;
         btn4add++;
+        readread = 0;
+        }
       }
       if(currentstage == 2){
         fourlines(
@@ -522,8 +545,11 @@ void story () {
         "study together",
         "after class!"
         );
+        if (readread){
+        readread = 0;
         love++;
         btn4add++;
+      }
       }
       if(currentstage == 3){
         fourlines(
@@ -562,13 +588,17 @@ void story () {
         "else later",
         "this evening?"
         );
+        if (readread){
+        readread = 0;
         neutral++;
         btn4add++;
+      }
       }
     }
   }
 
 if(nextconv == 0){
+  readread = 1;
   if(currentbtn == 2){
     if(currentstage == 1){
       threelines_and_menu(
