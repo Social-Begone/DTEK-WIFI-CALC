@@ -22,29 +22,22 @@ void threelines_and_menu(char r1[], char r2[], char r3[]) {
     load_string(2, r3);
 
     load_image(image_menu);
-
 }
 
 void intro(void) {
-
     buffer_clear();
     load_image(image_intro);
     display_write();
-
 }
 
 void dialogue_control(void) {
-
     buffer_clear();
     load_image(image_dialogue_controls);
     display_write();
-
 }
 
 void outro(void) {
-
   buffer_clear();
   load_image(image_outro);
   display_write();
-
 }

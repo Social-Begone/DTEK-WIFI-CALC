@@ -4,6 +4,7 @@
 #include "minigame/game.h"
 #include "minigame/levels.h"
 #include "drivers/OLED_SPI.h"
+#include "drivers/OLED_I2C.h"
 #include "data.h"
 
 position player;
@@ -83,7 +84,7 @@ void monologue () {
     }
     if(submonologue == 5){
       goal.x = 120;
-      goal.y = 24;
+      goal.y = 16;
 
       player.x = 0;
       player.y = 0;
@@ -150,6 +151,7 @@ void monologue () {
     }
   }
   if(currentmonologue == 3){  //NEUTRAL
+    OLED_display_image(image_anime_neutral);
     if(submonologue == 0){
       fourlines(
       "NEUTRAL ENDING",
@@ -184,9 +186,12 @@ void monologue () {
     }
     if(submonologue == 4){
     load_image(image_credits);
+    display_write();
+    while(1);
     }
   }
   if(currentmonologue == 4){ //FRIENDLY
+    OLED_display_image(image_anime_friendly);
     if(submonologue == 0){
       fourlines(
       "FRIENDLY ENDING",
@@ -229,9 +234,12 @@ void monologue () {
     }
     if(submonologue == 5){
     load_image(image_credits);
+    display_write();
+    while(1){}
     }
   }
   if(currentmonologue == 5){ //LOVE
+    OLED_display_image(image_anime_loving);
     if(submonologue == 0){
       fourlines(
       "LOVE ENDING",
@@ -290,9 +298,12 @@ void monologue () {
     }
     if(submonologue == 7){
     load_image(image_credits);
+    display_write();
+    while(1){}
     }
   }
   if(currentmonologue == 6){ //SECRET
+    OLED_display_image(image_anime_angry);
     if(submonologue == 0){
       fourlines(
       "SECRET ENDING",
@@ -351,6 +362,8 @@ void monologue () {
     }
     if(submonologue == 7){
     load_image(image_credits);
+    display_write();
+    while(1){}
     }
   }
 }
@@ -394,7 +407,8 @@ void story () {
         love++;
         btn2add++;
         readread = 0;
-      }
+        }
+        OLED_display_image(image_anime_loving);
       }
       if(currentstage == 2){
         fourlines(
@@ -407,7 +421,8 @@ void story () {
           friendly++;
           btn2add++;
           readread = 0;
-        }
+          }
+        OLED_display_image(image_anime_friendly);
       }
       if(currentstage == 3){
         fourlines(
@@ -417,6 +432,7 @@ void story () {
         ""
         );
         display_write();
+        OLED_display_image(image_anime_neutral);
         while (!getbtns() == 1);
 	      while (getbtns() == 1);
         neutral++;
@@ -432,6 +448,7 @@ void story () {
         "session!"
         );
         display_write();
+        OLED_display_image(image_anime_friendly);
         while (!getbtns() == 1);
 	      while (getbtns() == 1);
         friendly++;
@@ -450,7 +467,8 @@ void story () {
         love++;
         btn2add++;
         readread = 0;
-      }
+        }
+        OLED_display_image(image_anime_loving);
       }
     }
     if(currentbtn == 3){
@@ -465,7 +483,8 @@ void story () {
         friendly++;
         btn3add++;
         readread = 0;
-      }
+        }
+        OLED_display_image(image_anime_friendly);
       }
       if(currentstage == 2){
         fourlines(
@@ -478,7 +497,8 @@ void story () {
           neutral++;
           btn3add++;
           readread = 0;
-        }
+          }
+          OLED_display_image(image_anime_neutral);
       }
       if(currentstage == 3){
         fourlines(
@@ -488,6 +508,7 @@ void story () {
         ""
         );
         display_write();
+        OLED_display_image(image_anime_loving);
         while (!getbtns() == 1);
 	      while (getbtns() == 1);
         love++;
@@ -503,6 +524,7 @@ void story () {
         "you."
         );
         display_write();
+        OLED_display_image(image_anime_loving);
         while (!getbtns() == 1);
 	      while (getbtns() == 1);
         love++;
@@ -522,6 +544,7 @@ void story () {
         friendly++;
         btn3add++;
         }
+        OLED_display_image(image_anime_friendly);
       }
     }
     if(currentbtn == 4){
@@ -537,6 +560,7 @@ void story () {
         btn4add++;
         readread = 0;
         }
+        OLED_display_image(image_anime_neutral);
       }
       if(currentstage == 2){
         fourlines(
@@ -549,7 +573,8 @@ void story () {
         readread = 0;
         love++;
         btn4add++;
-      }
+        }
+        OLED_display_image(image_anime_loving);
       }
       if(currentstage == 3){
         fourlines(
@@ -559,6 +584,7 @@ void story () {
         ""
         );
         display_write();
+        OLED_display_image(image_anime_friendly);
         while (!getbtns() == 1);
 	      while (getbtns() == 1);
         friendly++;
@@ -574,6 +600,7 @@ void story () {
         ""
         );
         display_write();
+        OLED_display_image(image_anime_neutral);
         while (!getbtns() == 1);
 	      while (getbtns() == 1);
         neutral++;
@@ -592,7 +619,8 @@ void story () {
         readread = 0;
         neutral++;
         btn4add++;
-      }
+        }
+        OLED_display_image(image_anime_neutral);
       }
     }
   }

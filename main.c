@@ -79,7 +79,7 @@ char main(void) {
 	while (!getbtns());
 	buffer_clear();
 
-	
+	OLED_display_image(image_anime_neutral);
 
 	while (1) {
 		option_screen();
