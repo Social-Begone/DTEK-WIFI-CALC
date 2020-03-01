@@ -1,6 +1,13 @@
 #include <stdint.h>
 #include "sample.h"
 #include "input.h"
+#include "minigame/game.h"
+#include "minigame/levels.h"
+#include "drivers/OLED_SPI.h"
+#include "data.h"
+
+position player;
+position goal;
 
 int love = 0;
 int friendly = 0;
@@ -13,6 +20,8 @@ int submonologue = 0;
 int nextconv = 0;
 int currentbtn = 4;
 int currentstage = 1;
+
+
 
 void monologue () {
   if(currentmonologue == 0){
@@ -64,9 +73,34 @@ void monologue () {
       );
     }
     if(submonologue == 4){
+      load_image(image_minigame_controls);
+    }
+    if(submonologue == 5){
+      goal.x = 120;
+      goal.y = 24;
+
+      player.x = 0;
+      player.y = 0;
+
+      init(level1, player, goal);
+      game();
+      submonologue++;
+    }
+    if(submonologue == 6){
+      fourlines(
+      "Hi, you!",
+      "Ready to get",
+      "started?",
+      ""
+      );
+    }
+    if(submonologue == 7){
+
       currentmonologue++;
       monologuetoggle = 0;
       submonologue = 0;
+      currentstage++;
+
     }
   }
   if(currentmonologue == 2){
@@ -94,10 +128,19 @@ void monologue () {
       "the time..."
       );
     }
-    if(submonologue == 3){
+      if(submonologue == 3){
+      fourlines(
+      "It is getting ",
+      "late, what are",
+      "you doing later",
+      "this evening?"
+      );
+    }
+    if(submonologue == 4){
       currentmonologue++;
       monologuetoggle = 0;
       submonologue = 0;
+      currentstage++;
     }
   }
   if(currentmonologue == 3){
@@ -160,6 +203,9 @@ void story () {
         "class.",
         ""
         );
+        display_write();
+        while (!getbtns() == 1);
+	      while (getbtns() == 1);
         neutral++;
         monologuetoggle = 1;
         nextconv = 0;
@@ -171,6 +217,9 @@ void story () {
         "great studying",
         "session!"
         );
+        display_write();
+        while (!getbtns() == 1);
+	      while (getbtns() == 1);
         friendly++;
         monologuetoggle = 1;
         nextconv = 0;
@@ -214,6 +263,9 @@ void story () {
         "class!",
         ""
         );
+        display_write();
+        while (!getbtns() == 1);
+	      while (getbtns() == 1);
         love++;
         monologuetoggle = 1;
         nextconv = 0;
@@ -225,6 +277,9 @@ void story () {
         "if I got to meet",
         "you."
         );
+        display_write();
+        while (!getbtns() == 1);
+	      while (getbtns() == 1);
         love++;
         monologuetoggle = 1;
         nextconv = 0;
@@ -268,6 +323,9 @@ void story () {
         "about to start!",
         ""
         );
+        display_write();
+        while (!getbtns() == 1);
+	      while (getbtns() == 1);
         friendly++;
         monologuetoggle = 1;
         nextconv = 0;
@@ -279,6 +337,9 @@ void story () {
         "with the work.",
         ""
         );
+        display_write();
+        while (!getbtns() == 1);
+	      while (getbtns() == 1);
         neutral++;
         monologuetoggle = 1;
         nextconv = 0;
@@ -436,16 +497,15 @@ if(nextconv == 0){
 
 void selectbtn(int shift){
   shift = (shift * 28) + 5;
-  set_pixel(shift,27);
-  set_pixel(shift,28);
-  set_pixel(shift,29);
-  set_pixel(shift + 1,27);
-  set_pixel(shift + 1,28);
-  set_pixel(shift + 1,29);
-  set_pixel(shift + 2,27);
-  set_pixel(shift + 2,28);
-  set_pixel(shift + 2,29);
-
+  clr_pixel(shift,27);
+  clr_pixel(shift,28);
+  clr_pixel(shift,29);
+  clr_pixel(shift + 1,27);
+  clr_pixel(shift + 1,28);
+  clr_pixel(shift + 1,29);
+  clr_pixel(shift + 2,27);
+  clr_pixel(shift + 2,28);
+  clr_pixel(shift + 2,29);
 }
 
 void option_screen(void) {
@@ -494,7 +554,7 @@ void option_screen(void) {
     buffer_clear();
 
     if(monologuetoggle) {
-    monologue ();
+      monologue();
     }
     else {
     if(nextconv){

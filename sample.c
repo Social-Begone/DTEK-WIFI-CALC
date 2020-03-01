@@ -12,7 +12,6 @@ void fourlines(char r1[], char r2[], char r3[], char r4[]) {
     load_string(2, r3);
     load_string(3, r4);
 
-    display_write();
 }
 
 void threelines_and_menu(char r1[], char r2[], char r3[]) {
@@ -24,7 +23,6 @@ void threelines_and_menu(char r1[], char r2[], char r3[]) {
 
     load_image(image_menu);
 
-    display_write();
 }
 
 void intro(void) {

@@ -12,10 +12,11 @@
 #include "main.h"  /* Declatations for these labs */
 #include "drivers/OLED_SPI.h"
 #include "drivers/OLED_I2C.h"
-#include "data.h"
 #include "storystring.h"
 #include "minigame/game.h"
 #include "minigame/levels.h"
+#include "data.h"
+#include "input.h"
 
 void user_isr() {}
 
@@ -65,16 +66,25 @@ char main(void) {
 	// CODE HERE
 	display_init();
 
-	position player;
-		player.x = 0;
-		player.y = 0;
-	position goal;
-		goal.x   = 12;
-		goal.y   = 12;
+	load_image(image_intro);
+	display_write();
+	while (!getbtns());
+	while (getbtns());
+	buffer_clear();
 
-	init(level1, player, goal);
-	game();
 
+	load_image(image_dialogue_controls);
+	display_write();
+	while (!getbtns());
+	buffer_clear();
+
+	
+
+	while (1) {
+		option_screen();
+		display_write();
+	}
+	
 
 	return 0;
 }
