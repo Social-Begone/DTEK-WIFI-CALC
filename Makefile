@@ -1,6 +1,3 @@
-
-DRIVERS = drivers
-
 # PIC32 device number
 DEVICE		= 32MX320F128H
 

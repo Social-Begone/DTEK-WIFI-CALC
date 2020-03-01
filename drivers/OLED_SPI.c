@@ -1,3 +1,7 @@
+/* 
+    Written by: A Hammarstrand
+    Based on files from: Axel Isaksson
+*/
 
 
 #include <stdint.h>   /* Declarations of uint_32 and the like */

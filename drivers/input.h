@@ -1,3 +1,5 @@
+// Written by A Hammarstrand
+
 #ifndef BUTTONS_h
 #define BUTTONS_h
 #include <pic32mx.h>

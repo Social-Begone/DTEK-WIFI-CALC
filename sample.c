@@ -1,3 +1,5 @@
+// Written by: A Hammarstrand, H Hagberg
+
 #include "drivers/OLED_I2C.h"
 #include "drivers/OLED_SPI.h"
 #include "data.h"

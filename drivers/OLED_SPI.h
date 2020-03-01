@@ -1,3 +1,8 @@
+/* 
+    Written by: A Hammarstrand
+    Based on files from: Axel Isaksson
+*/
+
 #ifndef OLED_SPI_h
 #define OLED_SPI_h
 // Buffers

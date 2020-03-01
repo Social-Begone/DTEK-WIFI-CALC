@@ -1,3 +1,8 @@
+/*
+    Written by: A Hammarstrand
+    Assistence: H Hagberg
+*/
+
 #ifndef LEVELS_h
 #define LEVELS_h
 

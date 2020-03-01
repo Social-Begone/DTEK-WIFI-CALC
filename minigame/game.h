@@ -1,3 +1,8 @@
+/* 
+    Written by: A Hammarstrand
+    Assistence: H Hagberg
+*/
+
 #ifndef GAME_h
 #define GAME_h
 

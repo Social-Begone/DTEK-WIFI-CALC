@@ -1,3 +1,7 @@
+/*  
+    Written by: H Hagberg
+    Assistence: A Hammarstrand
+*/
 #include <stdint.h>
 #include "sample.h"
 #include "input.h"
@@ -84,7 +88,7 @@ void monologue () {
     }
     if(submonologue == 5){
       goal.x = 120;
-      goal.y = 16;
+      goal.y = 15;
 
       player.x = 0;
       player.y = 0;

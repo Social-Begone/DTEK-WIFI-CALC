@@ -1,3 +1,5 @@
+// Modified by A Hammarstrand
+
 #ifndef HEADER_OLEDI2C
 #define HEADER_OLEDI2C
 

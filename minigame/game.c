@@ -1,3 +1,7 @@
+/* 
+    Written by: A Hammarstrand
+    Assistence: H Hagberg
+*/
 #include <stdint.h>
 #include "../drivers/OLED_SPI.h"
 #include "../drivers/input.h"
@@ -56,23 +60,23 @@ int checkbounds(int x, int y) {
     if (x < 0 || x > 128 - P_WIDTH || y < 0 || y > 32 - P_HEIGHT) return 0;
     
     uint8_t column = _level[(y / 8) * 128 + x];
-    return (column & (1 << y % 8));
+    return (column & (1 << (y % 8)));
 }
 
 void up() { 
-    if (checkbounds(p.x, p.y - P_HEIGHT)) p.y -= P_HEIGHT;
+    if (checkbounds(p.x, p.y - 1)) p.y -= P_HEIGHT + 1;
 }
 
 void down() {
-    if (checkbounds(p.x, p.y + P_HEIGHT)) p.y += P_HEIGHT;
+    if (checkbounds(p.x, p.y + P_HEIGHT)) p.y += P_HEIGHT + 1;
 }
 
 void left() {
-    if (checkbounds(p.x - P_HEIGHT, p.y)) p.x -= P_WIDTH;
+    if (checkbounds(p.x - 1, p.y)) p.x -= P_WIDTH + 1;
 }
 
 void right() {
-    if (checkbounds(p.x + P_WIDTH, p.y)) p.x += P_WIDTH;
+    if (checkbounds(p.x + P_WIDTH, p.y)) p.x += P_WIDTH + 1;
 }
 
 void logic(void) {
