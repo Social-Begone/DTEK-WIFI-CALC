@@ -14,7 +14,7 @@ int nextconv = 0;
 int currentbtn = 4;
 int currentstage = 1;
 
-void monologue (int currentmonologue, int submonologue) {
+void monologue () {
   if(currentmonologue == 0){
     if(submonologue == 0){
       fourlines(
@@ -132,7 +132,7 @@ void monologue (int currentmonologue, int submonologue) {
   }
 }
 
-void story (int nextconv, int currentbtn, int currentstage) {
+void story () {
   if(nextconv == 1){
     if(currentbtn == 2){
       if(currentstage == 1){
@@ -162,6 +162,7 @@ void story (int nextconv, int currentbtn, int currentstage) {
         );
         neutral++;
         monologuetoggle = 1;
+        nextconv = 0;
       }
       if(currentstage == 4){
         fourlines(
@@ -172,6 +173,7 @@ void story (int nextconv, int currentbtn, int currentstage) {
         );
         friendly++;
         monologuetoggle = 1;
+        nextconv = 0;
       }
       if(currentstage == 5){
         fourlines(
@@ -214,6 +216,7 @@ void story (int nextconv, int currentbtn, int currentstage) {
         );
         love++;
         monologuetoggle = 1;
+        nextconv = 0;
       }
       if(currentstage == 4){
         fourlines(
@@ -224,6 +227,7 @@ void story (int nextconv, int currentbtn, int currentstage) {
         );
         love++;
         monologuetoggle = 1;
+        nextconv = 0;
       }
       if(currentstage == 5){
         fourlines(
@@ -266,6 +270,7 @@ void story (int nextconv, int currentbtn, int currentstage) {
         );
         friendly++;
         monologuetoggle = 1;
+        nextconv = 0;
       }
       if(currentstage == 4){
         fourlines(
@@ -276,6 +281,7 @@ void story (int nextconv, int currentbtn, int currentstage) {
         );
         neutral++;
         monologuetoggle = 1;
+        nextconv = 0;
       }
       if(currentstage == 5){
         fourlines(
@@ -488,23 +494,23 @@ void option_screen(void) {
     buffer_clear();
 
     if(monologuetoggle) {
-    monologue (currentmonologue, submonologue);
+    monologue ();
     }
     else {
     if(nextconv){
-      story (nextconv, currentbtn, currentstage);
+      story ();
     }
     else {
     if(currentbtn == 2){
-      story (nextconv, currentbtn, currentstage);
+      story ();
       selectbtn(2);
     }
     if(currentbtn == 3){
-      story (nextconv, currentbtn, currentstage);
+      story ();
       selectbtn(1);
     }
     if(currentbtn == 4){
-      story (nextconv, currentbtn, currentstage);
+      story ();
       selectbtn(0);
     }
   }
