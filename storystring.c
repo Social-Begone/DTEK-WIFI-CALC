@@ -13,6 +13,10 @@ int love = 0;
 int friendly = 0;
 int neutral = 0;
 
+int btn2add = 0;
+int btn3add = 0;
+int btn4add = 0;
+
 int monologuetoggle = 1;
 int currentmonologue = 0;   //currentmonologue: 3 = Neutral, 4 = Friendly, 5 = Love
 int submonologue = 0;
@@ -143,40 +147,239 @@ void monologue () {
       currentstage++;
     }
   }
-  if(currentmonologue == 3){
+  if(currentmonologue == 3){  //NEUTRAL
     if(submonologue == 0){
       fourlines(
-      "",
+      "NEUTRAL ENDING",
       "",
       "",
       ""
       );
     }
-  }
-  if(currentmonologue == 4){
-    if(submonologue == 0){
+    if(submonologue == 1){
       fourlines(
-      "",
+      "*She faces you*",
       "",
       "",
       ""
       );
     }
-  }
-  if(currentmonologue == 5){
-    if(submonologue == 0){
+    if(submonologue == 2){
       fourlines(
-      "",
+      "Maybe we'll see",
+      "eachother in",
+      "the corridors.",
+      ""
+      );
+    }
+    if(submonologue == 3){
+      fourlines(
+      "See you.",
       "",
       "",
       ""
       );
+    }
+    if(submonologue == 4){
+    load_image(image_credits);
+    }
+  }
+  if(currentmonologue == 4){ //FRIENDLY
+    if(submonologue == 0){
+      fourlines(
+      "FRIENDLY ENDING",
+      "",
+      "",
+      ""
+      );
+    }
+    if(submonologue == 1){
+      fourlines(
+      "*She faces you*",
+      "",
+      "",
+      ""
+      );
+    }
+    if(submonologue == 2){
+      fourlines(
+      "You are a great",
+      "friend! Me and",
+      "my friends are",
+      "going to a..."
+      );
+    }
+    if(submonologue == 3){
+      fourlines(
+      "Party tonight",
+      "and I want you",
+      "to join us!",
+      ""
+      );
+    }
+    if(submonologue == 4){
+      fourlines(
+      "We are going",
+      "to have so",
+      "much fun!",
+      ""
+      );
+    }
+    if(submonologue == 5){
+    load_image(image_credits);
+    }
+  }
+  if(currentmonologue == 5){ //LOVE
+    if(submonologue == 0){
+      fourlines(
+      "LOVE ENDING",
+      "",
+      "",
+      ""
+      );
+    }
+    if(submonologue == 1){
+      fourlines(
+      "*She faces you*",
+      "",
+      "",
+      ""
+      );
+    }
+    if(submonologue == 2){
+      fourlines(
+      "You've really",
+      "grown on me...",
+      "",
+      ""
+      );
+    }
+    if(submonologue == 3){
+      fourlines(
+      "You make me feel",
+      "very special and",
+      "I was wondering",
+      "if you want..."
+      );
+    }
+    if(submonologue == 4){
+      fourlines(
+      "to be with me?",
+      "",
+      "",
+      ""
+      );
+    }
+    if(submonologue == 5){
+      fourlines(
+      "We could go on",
+      "a date tomorrow!",
+      "",
+      ""
+      );
+    }
+    if(submonologue == 6){
+      fourlines(
+      "I will see you",
+      "then <3",
+      "",
+      ""
+      );
+    }
+    if(submonologue == 7){
+    load_image(image_credits);
+    }
+  }
+  if(currentmonologue == 6){ //SECRET
+    if(submonologue == 0){
+      fourlines(
+      "SECRET ENDING",
+      "",
+      "",
+      ""
+      );
+    }
+    if(submonologue == 1){
+      fourlines(
+      "*She faces you*",
+      "",
+      "",
+      ""
+      );
+    }
+    if(submonologue == 2){
+      fourlines(
+      "You",
+      "are not",
+      "paying",
+      "ATTENTION!!!!!!!"
+      );
+    }
+    if(submonologue == 3){
+      fourlines(
+      "You are just",
+      "mindlessly",
+      "doing what",
+      "I say???"
+      );
+    }
+    if(submonologue == 4){
+      fourlines(
+      "There is",
+      "something very",
+      "wrong with you",
+      ""
+      );
+    }
+    if(submonologue == 5){
+      fourlines(
+      "Are you on drugs",
+      "...anyways",
+      "",
+      ""
+      );
+    }
+    if(submonologue == 6){
+      fourlines(
+      "I never want",
+      "to see you",
+      "ever again!",
+      ""
+      );
+    }
+    if(submonologue == 7){
+    load_image(image_credits);
     }
   }
 }
 
 void story () {
   if(nextconv == 1){
+    if(currentstage == 6){
+
+      if(btn2add > 4 || btn3add > 4 || btn4add > 4) {
+        currentmonologue = 6;
+      }
+      else {
+
+      if(neutral > friendly && neutral > love) {
+        currentmonologue = 3;
+      }
+      else if (friendly > neutral && friendly > love) {
+        currentmonologue = 4;
+      }
+      else if (love > neutral && love > friendly) {
+        currentmonologue = 5;
+      }
+      else if (neutral == friendly || neutral == love) {
+        currentmonologue = 3;
+      }
+      else if (friendly == love) {
+        currentmonologue = 4;
+      }
+    }
+    monologuetoggle = 1;
+    }
     if(currentbtn == 2){
       if(currentstage == 1){
         fourlines(
@@ -186,6 +389,7 @@ void story () {
         "good with math."
         );
         love++;
+        btn2add++;
       }
       if(currentstage == 2){
         fourlines(
@@ -195,6 +399,7 @@ void story () {
           "better than one."
           );
           friendly++;
+          btn2add++;
       }
       if(currentstage == 3){
         fourlines(
@@ -207,6 +412,7 @@ void story () {
         while (!getbtns() == 1);
 	      while (getbtns() == 1);
         neutral++;
+        btn2add++;
         monologuetoggle = 1;
         nextconv = 0;
       }
@@ -221,6 +427,7 @@ void story () {
         while (!getbtns() == 1);
 	      while (getbtns() == 1);
         friendly++;
+        btn2add++;
         monologuetoggle = 1;
         nextconv = 0;
       }
@@ -232,9 +439,7 @@ void story () {
         "what do you say?"
         );
         love++;
-      }
-      if(currentstage == 6){
-
+        btn2add++;
       }
     }
     if(currentbtn == 3){
@@ -246,6 +451,7 @@ void story () {
         "with math?"
         );
         friendly++;
+        btn3add++;
       }
       if(currentstage == 2){
         fourlines(
@@ -255,6 +461,7 @@ void story () {
           "a study group?"
           );
           neutral++;
+          btn3add++;
       }
       if(currentstage == 3){
         fourlines(
@@ -267,6 +474,7 @@ void story () {
         while (!getbtns() == 1);
 	      while (getbtns() == 1);
         love++;
+        btn3add++;
         monologuetoggle = 1;
         nextconv = 0;
       }
@@ -281,6 +489,7 @@ void story () {
         while (!getbtns() == 1);
 	      while (getbtns() == 1);
         love++;
+        btn3add++;
         monologuetoggle = 1;
         nextconv = 0;
       }
@@ -292,9 +501,7 @@ void story () {
         "say?"
         );
         friendly++;
-      }
-      if(currentstage == 6){
-
+        btn3add++;
       }
     }
     if(currentbtn == 4){
@@ -306,6 +513,7 @@ void story () {
         ""
         );
         neutral++;
+        btn4add++;
       }
       if(currentstage == 2){
         fourlines(
@@ -315,6 +523,7 @@ void story () {
         "after class!"
         );
         love++;
+        btn4add++;
       }
       if(currentstage == 3){
         fourlines(
@@ -327,6 +536,7 @@ void story () {
         while (!getbtns() == 1);
 	      while (getbtns() == 1);
         friendly++;
+        btn4add++;
         monologuetoggle = 1;
         nextconv = 0;
       }
@@ -341,6 +551,7 @@ void story () {
         while (!getbtns() == 1);
 	      while (getbtns() == 1);
         neutral++;
+        btn4add++;
         monologuetoggle = 1;
         nextconv = 0;
       }
@@ -352,9 +563,7 @@ void story () {
         "this evening?"
         );
         neutral++;
-      }
-      if(currentstage == 6){
-
+        btn4add++;
       }
     }
   }
