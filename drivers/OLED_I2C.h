@@ -114,4 +114,6 @@ void	OLED_invert(char mode);
 void	OLED_setPixel(uint16_t x, uint16_t y);
 void	OLED_clrPixel(uint16_t x, uint16_t y);
 
+void    OLED_display_image(const uint64_t* image);
+
 #endif

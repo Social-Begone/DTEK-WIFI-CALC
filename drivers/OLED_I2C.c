@@ -174,3 +174,15 @@ void	OLED_clrPixel(uint16_t x, uint16_t y) {
     }
 
 }
+
+void     OLED_display_image(const uint64_t* image) {
+    int x, y;
+    for (y = 0; y < 64 * 2; y += 2) {
+        for (x = 0; x < 128; x++) {
+            if ((image[y + x / 64] >> x % 64) & 1)
+                OLED_setPixel(x, y / 2);
+        }
+    }
+
+    OLED_refresh();
+}

@@ -65,6 +65,7 @@ char main(void) {
 
 	// CODE HERE
 	display_init();
+	OLED_start();
 
 	load_image(image_intro);
 	display_write();
